@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { connectDB } from './config/database.js';
 import { initializeFirebase } from './config/firebase.js';
+import authRoutes from './routes/auth.js';
 
 // Load environment variables
 dotenv.config();
@@ -20,6 +21,7 @@ try {
   console.log('✅ Firebase initialized successfully');
 } catch (error) {
   console.error('🔥 Firebase initialization error:', error);
+  // Don't crash the server, just log the error
 }
 
 // Connect to Database
@@ -38,10 +40,8 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Basic API routes
-app.use('/api/auth', (req, res) => {
-  res.json({ message: 'Auth routes coming soon' });
-});
+// API routes
+app.use('/api/auth', authRoutes);
 
 app.use('/api/users', (req, res) => {
   res.json({ message: 'User routes coming soon' });

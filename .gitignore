@@ -117,4 +117,8 @@ Desktop.ini
 
 # Temporary files
 *.tmp
-*.temp 
+*.temp # Build artifacts
+frontend/.vite/
+frontend/dist/
+backend/node_modules/
+frontend/node_modules/
